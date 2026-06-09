@@ -134,7 +134,6 @@ function createCentipedeTree(rounds) {
     for (let r = 0; r < rounds; r++) {
         const nextNodes = [];
         for (const node of currentNodes) {
-            if (node.isLeaf()) continue;
             const player = node.player;
 
             // "终止"子节点 — 当前玩家拿走较大份额
@@ -162,12 +161,10 @@ function createCentipedeTree(rounds) {
     // 最后节点：双方选择"继续"时的终局收益
     const finalPayoff = rounds * 2 + 2;
     for (const node of currentNodes) {
-        if (!node.isLeaf()) {
-            node.payoffs = [finalPayoff, finalPayoff];
-            node.player = null;
-            node.label = '终局';
-            node.children = [];
-        }
+        node.payoffs = [finalPayoff, finalPayoff];
+        node.player = null;
+        node.label = '终局';
+        node.children = [];
     }
 
     return new GameTree(root);
