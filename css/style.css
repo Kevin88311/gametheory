@@ -1,0 +1,394 @@
+/* ===== 全局变量与重置 ===== */
+:root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --border: #334155;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.3);
+    --success: #4ade80;
+    --danger: #f87171;
+    --warning: #fbbf24;
+    --cooperate: #4ade80;
+    --defect: #f87171;
+    --highlight: rgba(56, 189, 248, 0.15);
+    --nash-highlight: rgba(251, 191, 36, 0.3);
+    --radius: 12px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* ===== 头部 ===== */
+header {
+    text-align: center;
+    padding: 32px 20px 20px;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.08) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ===== 导航 ===== */
+#game-nav {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-btn {
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.nav-btn.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
+    font-weight: 600;
+}
+
+/* ===== 主内容区 ===== */
+#game-container {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+
+/* ===== 游戏卡片 ===== */
+.game-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.game-info {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+}
+
+.game-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: var(--accent);
+}
+
+.game-desc {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* 策略选择区 */
+.strategy-section {
+    margin-top: 16px;
+}
+
+.strategy-section h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.strategy-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.strategy-btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px 20px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.strategy-btn:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 16px var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+.strategy-btn.cooperate { border-color: var(--cooperate); color: var(--cooperate); }
+.strategy-btn.cooperate:hover { background: rgba(74, 222, 128, 0.1); }
+.strategy-btn.defect { border-color: var(--defect); color: var(--defect); }
+.strategy-btn.defect:hover { background: rgba(248, 113, 113, 0.1); }
+
+/* AI 策略选择 */
+.ai-select {
+    margin-top: 12px;
+}
+
+.ai-select select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+/* ===== 支付矩阵 ===== */
+.matrix-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.matrix-section h3 {
+    font-size: 1rem;
+    margin-bottom: 16px;
+}
+
+.payoff-matrix {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 400px;
+}
+
+.payoff-matrix th,
+.payoff-matrix td {
+    padding: 14px 16px;
+    text-align: center;
+    border: 1px solid var(--border);
+    font-size: 0.95rem;
+}
+
+.payoff-matrix th {
+    background: var(--bg-primary);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.payoff-matrix td {
+    background: var(--bg-primary);
+    transition: var(--transition);
+}
+
+.payoff-matrix td.nash {
+    background: var(--nash-highlight);
+    box-shadow: inset 0 0 0 2px var(--warning);
+    font-weight: 700;
+}
+
+.payoff-matrix .player-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ===== 结果展示 ===== */
+.result-panel {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--bg-primary);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.result-panel .choices {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 12px;
+}
+
+.result-panel .choice-badge {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.choice-badge.you { background: rgba(56, 189, 248, 0.2); color: var(--accent); }
+.choice-badge.them { background: rgba(248, 113, 113, 0.2); color: var(--danger); }
+
+.payoff-display {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 8px;
+}
+
+.payoff-value {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.payoff-value.you { color: var(--accent); }
+.payoff-value.them { color: var(--danger); }
+
+/* 多轮分数 */
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.score-item {
+    text-align: center;
+}
+
+.score-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.score-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* ===== 按键 ===== */
+.btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent);
+}
+
+/* ===== 底部 ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ===== 特殊游戏布局 ===== */
+.ultimatum-layout,
+.public-goods-layout {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+}
+
+/* 滑块 */
+.slider-group {
+    margin: 16px 0;
+}
+
+.slider-group label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.slider-group input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .game-panel {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}

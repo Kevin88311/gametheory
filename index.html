@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博弈论互动体验</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🎯 博弈论互动体验</h1>
+        <p class="subtitle">探索经典博弈模型，体验策略与决策的奥秘</p>
+    </header>
+
+    <nav id="game-nav">
+        <button data-game="prisoner-dilemma" class="nav-btn active">囚徒困境</button>
+        <button data-game="stag-hunt" class="nav-btn">猎鹿博弈</button>
+        <button data-game="chicken" class="nav-btn">鹰鸽博弈</button>
+        <button data-game="battle-of-sexes" class="nav-btn">性别战</button>
+        <button data-game="ultimatum" class="nav-btn">最后通牒</button>
+        <button data-game="public-goods" class="nav-btn">公共物品</button>
+    </nav>
+
+    <main id="game-container">
+        <!-- 游戏内容动态渲染 -->
+    </main>
+
+    <footer>
+        <p>博弈论互动体验 — 理解策略互动的数学之美</p>
+    </footer>
+
+    <script src="js/engine.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/games/prisoner-dilemma.js"></script>
+    <script src="js/games/stag-hunt.js"></script>
+    <script src="js/games/chicken.js"></script>
+    <script src="js/games/battle-of-sexes.js"></script>
+    <script src="js/games/ultimatum-game.js"></script>
+    <script src="js/games/public-goods.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
