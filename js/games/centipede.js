@@ -16,6 +16,38 @@ const CentipedeGame = {
         let history = [];
         this._aiTimeout = null;
 
+        // 事件委托：在 container 上一次性绑定，处理所有按钮点击
+        container.addEventListener('click', (e) => {
+            const target = e.target;
+
+            // 重新开始按钮
+            if (target.id === 'cg-restart') {
+                if (this._aiTimeout) { clearTimeout(this._aiTimeout); this._aiTimeout = null; }
+                gameActive = true;
+                currentRound = 0;
+                history = [];
+                render();
+                return;
+            }
+
+            // 继续按钮（用户的回合）
+            if (target.id === 'cg-cont') {
+                history.push({ round: currentRound, player: 1, action: 'cont' });
+                currentRound++;
+                if (currentRound >= totalRounds) endGame('cooperate');
+                else render();
+                return;
+            }
+
+            // 终止按钮（用户的回合）
+            if (target.id === 'cg-term') {
+                const d = roundData[currentRound];
+                history.push({ round: currentRound, player: 1, action: 'term', payoffs: d.ifTerm });
+                endGame('terminate', d.ifTerm);
+                return;
+            }
+        });
+
         // 生成所有回合的收益数据
         const roundData = [];
         for (let r = 0; r < totalRounds; r++) {
@@ -40,14 +72,6 @@ const CentipedeGame = {
             // SPE预测AI在轮到它时终止
             // 但加入一些"非理性"继续来模拟真人
             return aiCooperates ? 'cont' : 'term';
-        };
-
-        const restart = () => {
-            if (this._aiTimeout) { clearTimeout(this._aiTimeout); this._aiTimeout = null; }
-            gameActive = true;
-            currentRound = 0;
-            history = [];
-            render();
         };
 
         const render = () => {
@@ -79,9 +103,6 @@ const CentipedeGame = {
                     </div>
                 </div>
             `;
-
-            // 绑定重启按钮（每次 render 后都要重新绑定，因为 DOM 被重建了）
-            document.getElementById('cg-restart').addEventListener('click', restart);
 
             renderFlow();
             if (gameActive && currentRound < totalRounds) {
@@ -158,18 +179,6 @@ const CentipedeGame = {
                         </div>
                     </div>
                 `;
-
-                document.getElementById('cg-cont').addEventListener('click', () => {
-                    history.push({ round: currentRound, player: 1, action: 'cont' });
-                    currentRound++;
-                    if (currentRound >= totalRounds) endGame('cooperate');
-                    else render();
-                });
-
-                document.getElementById('cg-term').addEventListener('click', () => {
-                    history.push({ round: currentRound, player: 1, action: 'term', payoffs: d.ifTerm });
-                    endGame('terminate', d.ifTerm);
-                });
             } else {
                 // AI的回合 — 显示决策过程
                 decisionDiv.innerHTML = `
