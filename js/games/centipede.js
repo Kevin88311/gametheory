@@ -42,6 +42,14 @@ const CentipedeGame = {
             return aiCooperates ? 'cont' : 'term';
         };
 
+        const restart = () => {
+            if (this._aiTimeout) { clearTimeout(this._aiTimeout); this._aiTimeout = null; }
+            gameActive = true;
+            currentRound = 0;
+            history = [];
+            render();
+        };
+
         const render = () => {
             container.innerHTML = `
                 <div class="game-panel ultimatum-layout" style="max-width:800px">
@@ -71,6 +79,9 @@ const CentipedeGame = {
                     </div>
                 </div>
             `;
+
+            // 绑定重启按钮（每次 render 后都要重新绑定，因为 DOM 被重建了）
+            document.getElementById('cg-restart').addEventListener('click', restart);
 
             renderFlow();
             if (gameActive && currentRound < totalRounds) {
@@ -264,22 +275,6 @@ const CentipedeGame = {
         };
 
         render();
-
-        // 将事件绑定移到 render 内部，确保 DOM 重建后仍有效
-        const bindControls = () => {
-            const restartBtn = document.getElementById('cg-restart');
-            if (restartBtn) {
-                restartBtn.addEventListener('click', () => {
-                    if (this._aiTimeout) { clearTimeout(this._aiTimeout); this._aiTimeout = null; }
-                    gameActive = true;
-                    currentRound = 0;
-                    history = [];
-                    render();
-                    bindControls();
-                });
-            }
-        };
-        bindControls();
     },
 
     cleanup() {
