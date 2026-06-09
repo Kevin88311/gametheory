@@ -8,7 +8,12 @@ const games = {
     'chicken': Chicken,
     'battle-of-sexes': BattleOfSexes,
     'ultimatum': UltimatumGame,
-    'public-goods': PublicGoodsGame
+    'public-goods': PublicGoodsGame,
+    'centipede': CentipedeGame,
+    'evolution': EvolutionGame,
+    'beauty-contest': BeautyContest,
+    'traveler-dilemma': TravelerDilemma,
+    'signaling': SignalingGame
 };
 
 let currentGame = null;

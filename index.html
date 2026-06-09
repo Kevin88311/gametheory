@@ -13,12 +13,23 @@
     </header>
 
     <nav id="game-nav">
-        <button data-game="prisoner-dilemma" class="nav-btn active">囚徒困境</button>
-        <button data-game="stag-hunt" class="nav-btn">猎鹿博弈</button>
-        <button data-game="chicken" class="nav-btn">鹰鸽博弈</button>
-        <button data-game="battle-of-sexes" class="nav-btn">性别战</button>
-        <button data-game="ultimatum" class="nav-btn">最后通牒</button>
-        <button data-game="public-goods" class="nav-btn">公共物品</button>
+        <div class="nav-group">
+            <span class="nav-label">基础博弈</span>
+            <button data-game="prisoner-dilemma" class="nav-btn active">囚徒困境</button>
+            <button data-game="stag-hunt" class="nav-btn">猎鹿博弈</button>
+            <button data-game="chicken" class="nav-btn">鹰鸽博弈</button>
+            <button data-game="battle-of-sexes" class="nav-btn">性别战</button>
+            <button data-game="ultimatum" class="nav-btn">最后通牒</button>
+            <button data-game="public-goods" class="nav-btn">公共物品</button>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">进阶博弈</span>
+            <button data-game="centipede" class="nav-btn">蜈蚣博弈</button>
+            <button data-game="evolution" class="nav-btn">演化模拟</button>
+            <button data-game="beauty-contest" class="nav-btn">选美比赛</button>
+            <button data-game="traveler-dilemma" class="nav-btn">旅行者困境</button>
+            <button data-game="signaling" class="nav-btn">信号博弈</button>
+        </div>
     </nav>
 
     <main id="game-container">
@@ -30,6 +41,8 @@
     </footer>
 
     <script src="js/engine.js"></script>
+    <script src="js/engine-extensive.js"></script>
+    <script src="js/engine-evolution.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/games/prisoner-dilemma.js"></script>
     <script src="js/games/stag-hunt.js"></script>
@@ -37,6 +50,11 @@
     <script src="js/games/battle-of-sexes.js"></script>
     <script src="js/games/ultimatum-game.js"></script>
     <script src="js/games/public-goods.js"></script>
+    <script src="js/games/centipede.js"></script>
+    <script src="js/games/evolution.js"></script>
+    <script src="js/games/beauty-contest.js"></script>
+    <script src="js/games/traveler-dilemma.js"></script>
+    <script src="js/games/signaling.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
