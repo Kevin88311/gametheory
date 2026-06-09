@@ -265,12 +265,21 @@ const CentipedeGame = {
 
         render();
 
-        document.getElementById('cg-restart').addEventListener('click', () => {
-            gameActive = true;
-            currentRound = 0;
-            history = [];
-            render();
-        });
+        // 将事件绑定移到 render 内部，确保 DOM 重建后仍有效
+        const bindControls = () => {
+            const restartBtn = document.getElementById('cg-restart');
+            if (restartBtn) {
+                restartBtn.addEventListener('click', () => {
+                    if (this._aiTimeout) { clearTimeout(this._aiTimeout); this._aiTimeout = null; }
+                    gameActive = true;
+                    currentRound = 0;
+                    history = [];
+                    render();
+                    bindControls();
+                });
+            }
+        };
+        bindControls();
     },
 
     cleanup() {
