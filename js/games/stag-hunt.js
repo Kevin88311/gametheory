@@ -22,9 +22,6 @@ const StagHunt = {
         let yourScore = 0, theirScore = 0, round = 0;
         const history = [];
         let lastYourChoice = 0;
-        const aiModes = ['tit-for-tat', 'cautious', 'random', 'always-stag', 'always-hare'];
-        let aiMode = 'tit-for-tat';
-        let aiHistory = [];
 
         container.innerHTML = `
             <div class="game-panel">

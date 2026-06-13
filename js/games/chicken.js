@@ -32,7 +32,7 @@ const Chicken = {
                             <option value="mixed">混合策略（约1/3鹰派）</option>
                             <option value="always-hawk">总是鹰派</option>
                             <option value="always-dove">总是鸽派</option>
-                            <option value="tit-for-tat">以牙还牙</option>
+                            <option value="tit-for-tat">反向策略（你鸽我鹰）</option>
                             <option value="random">随机</option>
                         </select>
                     </div>

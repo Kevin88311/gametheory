@@ -124,7 +124,7 @@ const SignalingGame = {
                     <div class="result-panel">
                         <p style="font-size:1.1rem">求职者选择: <b>${senderEducation === 'high' ? '🎓 高学历' : '📋 低学历'}</b></p>
                         <p style="color:var(--text-secondary);font-size:0.9rem">你不确定求职者真实类型（高能力概率 60%）</p>
-                        <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:4rem">
+                        <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:4px">
                             更新你的信念。如果这是分离均衡，高学历 = 高能力信号。
                         </p>
                         <div style="display:flex;gap:12px;justify-content:center;margin-top:12px">

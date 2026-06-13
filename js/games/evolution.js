@@ -62,10 +62,8 @@ const EvolutionGame = {
             buildMatrixEditor();
             drawCanvas();
 
-            if (n === 2) {
-                document.getElementById('ev-n2').addEventListener('click', () => switchToN(2));
-                document.getElementById('ev-n3').addEventListener('click', () => switchToN(3));
-            }
+            document.getElementById('ev-n2').addEventListener('click', () => switchToN(2));
+            document.getElementById('ev-n3').addEventListener('click', () => switchToN(3));
 
             document.getElementById('ev-run').addEventListener('click', runSimulation);
             document.getElementById('ev-reset').addEventListener('click', resetSimulation);
@@ -288,10 +286,6 @@ const EvolutionGame = {
                     const px = bx * top.x + by * left.x + bz * right.x;
                     const py = bx * top.y + by * left.y + bz * right.y;
                     const vec = field[i][j];
-
-                    // 投影到三角形平面
-                    const vx = vec.dx * top.x + vec.dy * left.x + (vec.dx + vec.dy) * right.x * 0;
-                    const vy = vec.dx * top.y + vec.dy * left.y;
 
                     const arrowScale = 150;
                     const ex = px + vec.dx * arrowScale;

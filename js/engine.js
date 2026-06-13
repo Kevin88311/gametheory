@@ -87,13 +87,14 @@ class GameEngine {
         const b = this.p2Matrix;
 
         // 玩家1的混合策略概率 p (选策略0), 1-p (选策略1)
-        // 使玩家2在两种策略间无差异
-        const denom1 = b[0][1] - b[1][1] - b[0][0] + b[1][0];
+        // 使玩家2在两种策略间无差异: p*b[0][0] + (1-p)*b[1][0] = p*b[0][1] + (1-p)*b[1][1]
+        const denom1 = b[0][0] - b[1][0] - b[0][1] + b[1][1];
         let p = denom1 !== 0 ? (b[1][1] - b[1][0]) / denom1 : null;
         if (p !== null) p = Math.max(0, Math.min(1, p));
 
         // 玩家2的混合策略概率 q (选策略0), 1-q (选策略1)
-        const denom2 = a[0][1] - a[1][1] - a[0][0] + a[1][0];
+        // 使玩家1在两种策略间无差异
+        const denom2 = a[0][0] - a[1][0] - a[0][1] + a[1][1];
         let q = denom2 !== 0 ? (a[1][1] - a[1][0]) / denom2 : null;
         if (q !== null) q = Math.max(0, Math.min(1, q));
 

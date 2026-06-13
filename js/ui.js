@@ -82,7 +82,7 @@ const UI = {
     },
 
     /** 更新多轮得分 */
-    updateScoreboard(yourTotal, theirTotal, container) {
+    updateScoreboard(yourTotal, theirTotal, round, container) {
         container.innerHTML = `
             <div class="scoreboard">
                 <div class="score-item">
@@ -95,7 +95,7 @@ const UI = {
                 </div>
                 <div class="score-item">
                     <div class="score-label">轮次</div>
-                    <div class="score-value" style="color:var(--text-secondary)">${window.gameRound || 0}</div>
+                    <div class="score-value" style="color:var(--text-secondary)">${round}</div>
                 </div>
             </div>
         `;
